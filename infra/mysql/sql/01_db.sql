@@ -1,0 +1,3 @@
+-- SECOND DB
+-- USE ROOT USER
+-- CREATE DATABASE IF NOT EXISTS database_test;
