@@ -1,0 +1,30 @@
+version: '3'
+
+services: 
+  php:
+    container_name: php_sample
+    build: ./docker/php
+    volumes: 
+      - ../server:/var/www/html
+    ports: 
+      - 8080:80
+    depends_on:
+      - db
+
+  db:
+    env_file: .env
+    image: mysql:5.7
+    container_name: db_sample
+    environment: 
+      MYSQL_ROOT_PASSWORD: $MYSQL_RPASS
+      MYSQL_DATABASE: $MYSQL_DB
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASS
+      TZ: $DB_TZ
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes: 
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports: 
+      - 3306:3306
