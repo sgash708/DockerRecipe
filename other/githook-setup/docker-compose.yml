@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  helloworld:
+    container_name: helloworld
+    image: hello-world:latest
+    depends_on:
+      - dev-setup
+  dev-setup:
+    volumes:
+      - .:/app
+    working_dir: /app
+    build: .
+    command: sh -c "cp pre-commit .git/hooks/pre-commit && echo 'complete'"

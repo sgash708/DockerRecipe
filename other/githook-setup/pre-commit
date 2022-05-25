@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "check terraform format"
+cd terraform
+terraform fmt
+terraform fmt -recursive
+git add .
+
+echo "complete!!"
