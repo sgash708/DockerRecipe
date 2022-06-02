@@ -1,0 +1,30 @@
+version: "3.8"
+volumes:
+  db-store:
+services:
+  r-app:
+    container_name: r-app
+    build: ./docker/rust
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./src:/var/rust
+    ports:
+      - 8083:8083
+
+  r-db:
+    image: mysql:5.7
+    container_name: r-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 'your_root_password'
+      MYSQL_DATABASE: 'your_database_name'
+      MYSQL_USER: 'username'
+      MYSQL_PASSWORD: 'your_password'
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
