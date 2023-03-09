@@ -11,4 +11,4 @@ services:
     container_name: wp-scan
     image: wpscanteam/wpscan
     volumes:
-      - ./passwords.lst:/passwordlists
+      - ./wpscan:/passwordlists
