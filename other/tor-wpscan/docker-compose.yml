@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  tor-proxy:
+    container_name: tor-proxy
+    image: dperson/torproxy:latest
+    ports:
+      - 8118:8118
+      - 9050:9050
+  wp-scan:
+    container_name: wp-scan
+    image: wpscanteam/wpscan
+    volumes:
+      - ./passwords.lst:/passwordlists
