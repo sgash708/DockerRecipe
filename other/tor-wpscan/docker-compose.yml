@@ -9,6 +9,6 @@ services:
       - 9050:9050
   wp-scan:
     container_name: wp-scan
-    image: wpscanteam/wpscan
+    image: wpscanteam/wpscan:latest
     volumes:
       - ./wpscan:/passwordlists

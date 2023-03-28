@@ -16,7 +16,7 @@ run-u:
 
 .PHONY: run-p
 run-p:
-	@docker-compose run -it --rm wp-scan --proxy socks5h://tor-proxy:9050 --url ${url} -U ${username} --passwords /passwordlists/passwords.lst
+	@docker-compose run -it --rm wp-scan --proxy socks5h://tor-proxy:9050 --url ${url} --random-user-agent -U ${username} --passwords /passwordlists/passwords.lst -v
 
 .PHONY: down
 down:
